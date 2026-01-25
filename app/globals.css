@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  /* Light Mode */
-  --background: #FFFFFF;
-  --foreground: #171717;
-  --secondary: #F4F4F5;
-  --accent: #10B981; /* Emerald-500 */
-}
-
-.dark {
-  /* Dark Mode */
   --background: #000000;
-  --foreground: #EDEDED;
-  --secondary: #18181B;
-  --accent: #10B981;
+  --foreground: #ededed;
+  --card: #121212;
+  --card-foreground: #ededed;
+  --primary: #10B981;
+  --primary-foreground: #ffffff;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  /* Mobile shell optimization */
+  min-height: 100dvh;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
 }
