@@ -106,7 +106,7 @@ export function ExportModal({ visible, onClose, currencySymbol }: ExportModalPro
             const fileUri = `${FileSystem.cacheDirectory}${fileName}`;
 
             await FileSystem.writeAsStringAsync(fileUri, csv, {
-                encoding: FileSystem.EncodingType.UTF8,
+                encoding: 'utf8' as any,
             });
 
             const canShare = await Sharing.isAvailableAsync();
