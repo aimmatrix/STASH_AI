@@ -103,7 +103,9 @@ export function ExportModal({ visible, onClose, currencySymbol }: ExportModalPro
             const csv = buildCSV(data);
             const label = new Date().toISOString().split('T')[0];
             const fileName = `stash_transactions_${label}.csv`;
-            const fileUri = `${FileSystem.cacheDirectory}${fileName}`;
+            const cacheDir = FileSystem.cacheDirectory ?? FileSystem.documentDirectory ?? '';
+            if (!cacheDir) throw new Error('No writable directory available');
+            const fileUri = `${cacheDir}${fileName}`;
 
             await FileSystem.writeAsStringAsync(fileUri, csv, {
                 encoding: 'utf8' as any,
