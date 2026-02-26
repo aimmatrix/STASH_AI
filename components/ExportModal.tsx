@@ -1,6 +1,4 @@
-import * as FileSystem from 'expo-file-system';
 import * as Haptics from 'expo-haptics';
-import * as Sharing from 'expo-sharing';
 import { Download, X } from 'lucide-react-native';
 import { useState } from 'react';
 import {
@@ -8,6 +6,7 @@ import {
     Alert,
     Modal,
     Pressable,
+    Share,
     StyleSheet,
     Text,
     View,
@@ -103,25 +102,12 @@ export function ExportModal({ visible, onClose, currencySymbol }: ExportModalPro
             const csv = buildCSV(data);
             const label = new Date().toISOString().split('T')[0];
             const fileName = `stash_transactions_${label}.csv`;
-            const cacheDir = FileSystem.cacheDirectory ?? FileSystem.documentDirectory ?? '';
-            if (!cacheDir) throw new Error('No writable directory available');
-            const fileUri = `${cacheDir}${fileName}`;
-
-            await FileSystem.writeAsStringAsync(fileUri, csv, {
-                encoding: 'utf8' as any,
-            });
-
-            const canShare = await Sharing.isAvailableAsync();
-            if (!canShare) {
-                Alert.alert('Sharing not available', 'Your device does not support file sharing.');
-                return;
-            }
 
             await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            await Sharing.shareAsync(fileUri, {
-                mimeType: 'text/csv',
-                dialogTitle: 'Export Transactions',
-                UTI: 'public.comma-separated-values-text',
+            await Share.share({
+                message: csv,
+                title: fileName,
+                subject: fileName,
             });
 
             onClose();
