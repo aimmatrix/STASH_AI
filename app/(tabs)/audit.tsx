@@ -258,7 +258,7 @@ export default function AuditScreen() {
                                         }}
                                         style={styles.slideScroll}
                                     >
-                                        {slideWidth > 0 && auditPoints.map((point, idx) => {
+                                        {slideWidth > 0 ? auditPoints.map((point, idx) => {
                                             const color = SLIDE_COLORS[idx % SLIDE_COLORS.length];
                                             return (
                                                 <View
@@ -273,7 +273,7 @@ export default function AuditScreen() {
                                                     <Text style={styles.slideBody}>{point.body}</Text>
                                                 </View>
                                             );
-                                        })}
+                                        }) : null}
                                     </ScrollView>
 
                                     <View style={styles.dotsRow}>

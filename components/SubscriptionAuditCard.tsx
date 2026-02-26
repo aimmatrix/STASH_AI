@@ -232,7 +232,7 @@ export function SubscriptionAuditCard({ currencySymbol, currencyCode }: Subscrip
                 }}
                 style={styles.slideScroll}
             >
-                {slideWidth > 0 && auditResult.items.map((item, index) => {
+                {slideWidth > 0 ? auditResult.items.map((item, index) => {
                     const config = getVerdictConfig(item.verdict);
                     const IconComponent = config.Icon;
                     return (
@@ -257,7 +257,7 @@ export function SubscriptionAuditCard({ currencySymbol, currencyCode }: Subscrip
                             <Text style={styles.subReason}>{item.reason}</Text>
                         </View>
                     );
-                })}
+                }) : null}
             </ScrollView>
 
             {/* Dot indicators */}

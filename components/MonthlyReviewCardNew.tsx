@@ -204,7 +204,7 @@ export function MonthlyReviewCardNew({
                             }}
                             style={styles.slideScroll}
                         >
-                            {slideWidth > 0 && auditPoints.map((point, idx) => {
+                            {slideWidth > 0 ? auditPoints.map((point, idx) => {
                                 const config = SLIDE_CONFIG[idx % SLIDE_CONFIG.length];
                                 const Icon = config.Icon;
                                 const isLast = idx === auditPoints.length - 1;
@@ -227,7 +227,7 @@ export function MonthlyReviewCardNew({
                                         ) : null}
                                     </View>
                                 );
-                            })}
+                            }) : null}
                         </ScrollView>
 
                         {auditPoints.length > 1 && (
